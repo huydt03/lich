@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <title>Lịch Vạn Niên</title> -->
+	<meta charset="utf-8">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noodp,index,follow" />
+	<meta name="revisit-after" content="1 days" />
+	<meta name="description" content="Xem lịch âm - chuyển đổi - âm lịch sang dương lịch">
+	<meta name="author" content="HuyIT">
+	<meta name="generator" content="HuyIT">
+	<meta http-equiv="content-language" content="vi" />
+	<link rel="icon" type="image/x-icon" href="assets/img/logo.PNG">
+	<meta property="og:image" content="assets/img/thumbnail.PNG">
+	<script type="text/javascript" src="assets/js/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/app.css">
+	<style type="text/css">
+		@property --num {
+		  syntax: "<integer>";
+		  initial-value: 0;
+		  inherits: false;
+		}
+		#ngay-day{
+		  transition: --num .5s;
+		  counter-set: num var(--num);
+		  font: 800 40px system-ui;
+		}
+		#ngay-day::after {
+		  content: counter(num);
+		  position: relative;
+    	  top: -26px;
+		}
+		.t-day .t-item{
+			min-height: 40px;
+		}
+		.t-item{
+			position: relative;
+		}
+		.t-item-star{
+			position: absolute;
+		    right: 1px;
+		    top: -3px;
+		    color: #00a100;
+		    font-size: 13px;
+		}
+		.focus .t-item-jd{
+			color: #285c71;
+    		font-weight: bold;
+		}
+		#ngay-event{
+		    max-width: 235px;
+		    color: #1fa0bf;
+		    font-size: 13px;
+		}
+		.swiper{
+			position: relative;
+		}
+		.swiper-arrow{
+			position: absolute;
+		    right: -11%;
+		    font-size: 5em;
+		    top: 50%;
+		    transform: translate(0%, -50%);
+		}
+		.swiper-arrow-prev{
+			right: unset;
+			left: -11%;
+			transform: rotate(180deg) translate(0%, 50%);
+		}
+		.can-chi{
+			font-size: 14px;
+		}
+		.lbl-can-chi{
+			color: red;
+		}
+
+		@media screen and (min-width: 630px){
+			#app{
+				flex-direction: row;
+			}
+			#lich-ngay, #lich-thang{
+				width: 50%;
+				display: flex;
+			    flex-direction: column;
+			    justify-content: center;
+			}
+		}
+	</style>
+</head>
+<body class="fill">
+
+	<div id="app" class="flex-c shadow">
+
+		<div id="lich-ngay" class="app-container">
+			
+			<main class="center" style="position: relative;" id="ngay-container">
+				<!-- <div class="arrows arrow-left curs" id="ngay-prev-day">‹</div> -->
+				<div class="align-center">
+					<h2 id="ngay-day"></h2>
+					<label id="ngay-date"></label> (<label id="ngay-can-chi" class="lbl-can-chi"></label>)
+					<div id="ngay-event"></div>
+					<h3 id="ngay-day-name" style="margin-top: 10px"></h3>
+				</div>
+				<!-- <div class="arrows arrow-right curs" id="ngay-next-day">›</div> -->
+			</main>
+			
+			<footer class="align-center">
+				<div class="f-text f-trans">Âm lịch</div>
+				<div class="f-date f-trans center">
+					<div class="can-chi">
+						<div>Ngày</div>
+						(<label id="ngay-can-chi-ngay" class="lbl-can-chi">.......</label>)
+					</div>
+					<input class="jd-ip" type="number" min="1" max="31" id="ngay-jd-day">-<input class="jd-ip" type="number" min="1" max="12" id="ngay-jd-month">
+					<div class="can-chi">
+						<div>Tháng</div>
+						(<label id="ngay-can-chi-thang" class="lbl-can-chi">......</label>)
+					</div>
+				</div>
+			</footer>
+
+		</div>
+
+		<div id="lich-thang" class="shadow">
+			<div id="thang-content">
+			<header class="flex" style="padding: 8px 0px">
+				<div class="h-left curs" id="thang-prev">
+					➔
+					</div>
+				<div class="h-center align-center">
+					<div class="h-center align-center">
+						Tháng: <select id="thang-month"></select>
+						Năm: <select id="thang-year"></select>
+					</div>
+				</div>
+				<div class="h-right curs" id="thang-next">
+					➔
+				</div>
+			</header>
+			<div class="gird t-day">
+				<div class="t-item">Chủ Nhật</div>
+				<div class="t-item">Thứ Hai</div>
+				<div class="t-item">Thứ Ba</div>
+				<div class="t-item">Thứ Tư</div>
+				<div class="t-item">Thứ Năm</div>
+				<div class="t-item">Thứ Sáu</div>
+				<div class="t-item">Thứ Bảy</div>
+			</div>
+			<div id="thang-container" class="gird">
+				
+			</div>
+		</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
